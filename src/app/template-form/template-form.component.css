@@ -114,3 +114,9 @@ input[type="submit"] {
 .font-weight-bold {
     font-weight: bold;
 }
+::placeholder {
+    color: lightgray;
+}
+select:invalid {
+    color: lightgrey;
+}

@@ -27,7 +27,7 @@ export class TemplateFormComponent implements OnInit {
   onSubmit(result) {
     this.titleRes = result.name;
     this.jobRes = result.myJobs;
-    this.textRes = result.textMessage;
+    this.textRes = result.myEmail;
     this.submitted = true;
   }
 
@@ -38,7 +38,7 @@ export class Data {
   constructor(
     public name?: string,
     public myJobs?: string,
-    public textMessage?: string
+    public myEmail?: string
   ) { }
 
 }

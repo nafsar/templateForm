@@ -11,7 +11,7 @@
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-user text-muted"></span>
           </span>
-          <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="validate" placeholder="!"
+          <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="validate" placeholder="Enter username"
             #name="ngModel" minlength="2" [pattern]="userNamePattern">
           <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
             Please enter minimum of 2 characters a - z and no space in username!
@@ -26,12 +26,10 @@
             
             <span class="glyphicon glyphicon-envelope text-muted"></span>
           </span>
-          <input type="text" class="form-control" id="textMessage" [(ngModel)]="model.textMessage" #textMessage="ngModel" name="textMessage" [pattern]="emailPattern" 
-          required>
-          <div *ngIf="textMessage.touched" class="alert alert-danger">
-           <p *ngIf="textMessage.errors?.required">Email is a required field!</p> 
-            <p *ngIf="textMessage.errors?.pattern">This is not a valid Email!!!</p> 
-            <!-- <div [hidden]="textMessage.invalid">valid email is required</div> -->
+          <input type="text" class="form-control" id="myEmail" [(ngModel)]="model.myEmail" #myEmail="ngModel" name="myEmail" [pattern]="emailPattern" 
+          placeholder="Enter email" required>
+          <div *ngIf="myEmail.touched" class="alert alert-danger">
+           <p *ngIf="myEmail.errors?.required || myEmail.errors?.pattern"> A valid Email is a required field!</p> 
           </div>
         </div>
       </div>
@@ -40,14 +38,14 @@
         <label for="myEmails">Occupation</label>
         <div class="input-group input-group-lg pd-top">
           <span class="input-group-addon">
-           <!--  <span class="glyphicon glyphicon-envelope text-muted"></span> -->
             <span class="glyphicon glyphicon-edit text-muted"></span>
           </span>
-          <select class="form-control" id="myJobs" required [(ngModel)]="model.myJobs" name="myJobs" #myJobs="ngModel">
+          <select class="form-control" id="myJobs" required [(ngModel)]="model.myJobs" name="myJobs" #myJobs="ngModel" placeholder="Choose">
+            <option value="" disabled selected hidden>Occupation?</option>
             <option *ngFor="let jb of jobs" [value]="jb">{{jb}}</option>
           </select>
           <div [hidden]="myJobs.valid" class="alert alert-danger">
-            Please choose occupation!
+            Please choose!
           </div>
         </div>
       </div>
