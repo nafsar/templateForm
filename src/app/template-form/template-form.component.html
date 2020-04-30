@@ -6,40 +6,48 @@
     </div>
     <form (ngSubmit)="onSubmit(model)" #templateForm="ngForm">
       <div class="form-group">
-        <label for="name">Name</label>
+        <label for="name">User Name</label>
         <div class="input-group input-group-lg">
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-user text-muted"></span>
           </span>
-          <input autocomplete="off" type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" placeholder="Minimum 5 charaters"
-            #name="ngModel" minlength="5">
+          <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="validate" placeholder="!"
+            #name="ngModel" minlength="2" [pattern]="userNamePattern">
           <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
-            Please enter your name (Minimum 5 characters)!
+            Please enter minimum of 2 characters a - z and no space in username!
           </div>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="message">{{text}}</label>
+        <label for="message">Email</label>
         <div class="input-group input-group-lg pd-top">
           <span class="input-group-addon">
-            <span class="glyphicon glyphicon-edit text-muted"></span>
+            
+            <span class="glyphicon glyphicon-envelope text-muted"></span>
           </span>
-          <input type="text" class="form-control" id="textMessage" [(ngModel)]="model.textMessage" name="textMessage">
+          <input type="text" class="form-control" id="textMessage" [(ngModel)]="model.textMessage" #textMessage="ngModel" name="textMessage" [pattern]="emailPattern" 
+          required>
+          <div *ngIf="textMessage.touched" class="alert alert-danger">
+           <p *ngIf="textMessage.errors?.required">Email is a required field!</p> 
+            <p *ngIf="textMessage.errors?.pattern">This is not a valid Email!!!</p> 
+            <!-- <div [hidden]="textMessage.invalid">valid email is required</div> -->
+          </div>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="myEmails">{{emailAddress}}</label>
+        <label for="myEmails">Occupation</label>
         <div class="input-group input-group-lg pd-top">
           <span class="input-group-addon">
-            <span class="glyphicon glyphicon-envelope text-muted"></span>
+           <!--  <span class="glyphicon glyphicon-envelope text-muted"></span> -->
+            <span class="glyphicon glyphicon-edit text-muted"></span>
           </span>
-          <select class="form-control" id="myEmails" required [(ngModel)]="model.myEmails" name="myEmails" #myEmails="ngModel">
-            <option *ngFor="let mls of emails" [value]="mls">{{mls}}</option>
+          <select class="form-control" id="myJobs" required [(ngModel)]="model.myJobs" name="myJobs" #myJobs="ngModel">
+            <option *ngFor="let jb of jobs" [value]="jb">{{jb}}</option>
           </select>
-          <div [hidden]="myEmails.valid" class="alert alert-danger">
-            Invalid e-mail address. Please try again (yourname@example.com)
+          <div [hidden]="myJobs.valid" class="alert alert-danger">
+            Please choose occupation!
           </div>
         </div>
       </div>
@@ -62,7 +70,7 @@
         <p>
           <span class="font-weight-bold">Message: </span>{{textRes}}</p>
         <div>
-          <span class="font-weight-bold">Email: </span> {{emailAddressRes}}</div>
+          <span class="font-weight-bold">Occupation: </span> {{jobRes}}</div>
         <button class="sim-lnk">
           <a href="http://localhost:4200/">Return to form</a>
         </button>

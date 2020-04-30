@@ -12,21 +12,21 @@ export class TemplateFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  userNamePattern = "[a-zA-Z]*";
+  emailPattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" 
+  jobs = ['', 'Consultant', '','Engineer', 'Student',
+    '', 'Recruiter'];
 
-
-  emails = ['', 'naser@angular.io', 'templateFormat@angular.io', 'test@gm.com',
-    '', 'form@uiux.bi'];
-
-  model = new Data('Earth', this.emails[0], 'Angular Template Driven Forms');
+  model = new Data('', this.jobs[0], '');
 
   submitted = false;
   title = 'name';
   emailAddress = 'Email Address';
   text = 'Message';
-  emailAddressRes = ''; titleRes = ''; textRes = '';
+  jobRes = ''; titleRes = ''; textRes = '';
   onSubmit(result) {
     this.titleRes = result.name;
-    this.emailAddressRes = result.myEmails;
+    this.jobRes = result.myJobs;
     this.textRes = result.textMessage;
     this.submitted = true;
   }
@@ -36,8 +36,8 @@ export class TemplateFormComponent implements OnInit {
 
 export class Data {
   constructor(
-    public name: string,
-    public myEmails?: string,
+    public name?: string,
+    public myJobs?: string,
     public textMessage?: string
   ) { }
 
