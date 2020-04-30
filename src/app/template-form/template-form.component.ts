@@ -7,14 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TemplateFormComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
   userNamePattern = "[a-zA-Z]*";
-  emailPattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" 
-  jobs = ['', 'Consultant', '','Engineer', 'Student',
+  emailPattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+  jobs = ['', 'Consultant', '', 'Engineer', 'Student',
     '', 'Recruiter'];
 
   model = new Data('', this.jobs[0], '');
@@ -31,6 +27,13 @@ export class TemplateFormComponent implements OnInit {
     this.submitted = true;
   }
 
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+  refresh(): void {
+    window.location.reload();
+  }
 
 }
 
