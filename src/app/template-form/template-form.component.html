@@ -44,7 +44,7 @@
             <option value="" disabled selected hidden>Occupation?</option>
             <option *ngFor="let jb of jobs" [value]="jb">{{jb}}</option>
           </select>
-          <div [hidden]="myJobs.valid" class="alert alert-danger">
+          <div [hidden]="myJobs.valid || myJobs.pristine" class="alert alert-danger">
             Please choose!
           </div>
         </div>
